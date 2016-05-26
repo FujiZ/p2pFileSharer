@@ -12,16 +12,16 @@ import java.util.concurrent.Executors;
  */
 public class P2PServer implements Runnable{
 
-
     public P2PServer(String dir,int port) throws IOException {
         executorService =Executors.newCachedThreadPool();
         this.dir=new File(dir);
         // TODO: 16-5-26 判断dir是否为目录
         serverSocket=new ServerSocket(port);
-        System.out.println("server started successfully on "+port);
+        System.out.println("P2Pserver started successfully on "+port);
     }
 
-    private void service(){
+    @Override
+    public void run(){
         while (true){
             Socket socket;
             try {
@@ -33,11 +33,6 @@ public class P2PServer implements Runnable{
                 e.printStackTrace();
             }
         }
-    }
-
-    @Override
-    public void run(){
-        service();
     }
 
     public File getDir(){

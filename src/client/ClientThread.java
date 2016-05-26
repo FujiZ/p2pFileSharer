@@ -1,5 +1,6 @@
 package client;
 
+import utils.thread.IOThread;
 import utils.Utility;
 
 import java.io.*;
@@ -9,12 +10,12 @@ import java.nio.file.Paths;
 /**
  * Created by fuji on 16-5-26.
  */
-public class ClientThread implements Runnable{
+public class ClientThread extends IOThread{
 
     public ClientThread(P2PClient client,String cmdStr,String hostname,int port) throws IOException {
+        super(new Socket(hostname,port));
         this.client=client;
         this.cmdStr=cmdStr;
-        socket=new Socket(hostname,port);
         System.out.println("Connection success");
     }
 
@@ -75,24 +76,16 @@ public class ClientThread implements Runnable{
     @Override
     public void run(){
         try {
-            dis=Utility.getInputStream(socket);
-            dos=Utility.getOutputStream(socket);
+            initSocketStream();
             parseCmd(cmdStr);
         } catch (IOException e) {
             e.printStackTrace();
         }
         finally {
-            Utility.closeInputStream(dis);
-            Utility.closeOutputStream(dos);
-            Utility.closeSocket(socket);
+            closeSocket();
         }
     }
 
-    private static int BUFSIZE=8192;
-
     private P2PClient client;
     private String cmdStr;
-    private Socket socket;
-    private DataInputStream dis;
-    private DataOutputStream dos;
 }

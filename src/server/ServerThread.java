@@ -1,5 +1,6 @@
 package server;
 
+import utils.thread.IOThread;
 import utils.Utility;
 
 import java.io.*;
@@ -8,14 +9,15 @@ import java.net.Socket;
 /**
  * Created by fuji on 16-5-26.
  */
-public class ServerThread implements Runnable{
+public class ServerThread extends IOThread{
 
     public ServerThread(P2PServer server, Socket socket){
+        super(socket);
         this.server=server;
-        this.socket=socket;
     }
 
-    private void parseCmd(String cmdStr) throws IOException {
+    @Override
+    protected void parseCmd(String cmdStr) throws IOException {
         String[] argv=cmdStr.split(" ");
         switch (argv[0].toUpperCase()){
             case "GET":
@@ -46,7 +48,7 @@ public class ServerThread implements Runnable{
 
     private void sendFile(File file) throws IOException {
         System.out.println("Transfer "+file.getName());
-        DataOutputStream dos=new DataOutputStream(socket.getOutputStream());
+        dos=Utility.getOutputStream(socket);
         FileInputStream fis=new FileInputStream(file);
         byte[] buffer=new byte[BUFSIZE];
         //OK filename
@@ -63,29 +65,5 @@ public class ServerThread implements Runnable{
         System.out.println("Transfer complete");
     }
 
-    @Override
-    public void run() {
-        System.out.println("New connection from "+socket.getInetAddress()+":"+socket.getPort());
-        try {
-            dis= Utility.getInputStream(socket);
-            dos=Utility.getOutputStream(socket);
-            String cmdStr=dis.readUTF();
-            parseCmd(cmdStr);
-            // TODO: 16-5-26 leave message
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        finally {
-            Utility.closeInputStream(dis);
-            Utility.closeOutputStream(dos);
-            Utility.closeSocket(socket);
-        }
-    }
-
     private P2PServer server;
-    private Socket socket;
-    private DataInputStream dis;
-    private DataOutputStream dos;
-
-    private static int BUFSIZE=8192;
 }
