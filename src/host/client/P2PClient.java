@@ -1,4 +1,4 @@
-package client;
+package host.client;
 
 import java.io.File;
 import java.io.IOException;

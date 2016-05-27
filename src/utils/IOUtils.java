@@ -6,7 +6,7 @@ import java.net.Socket;
 /**
  * Created by fuji on 16-5-26.
  */
-public class Utility {
+public class IOUtils {
     public static BufferedReader getBufferedReader(Socket socket) throws IOException {
         return new BufferedReader(new InputStreamReader(socket.getInputStream()));
     }
@@ -25,6 +25,10 @@ public class Utility {
 
     public static DataOutputStream getOutputStream(File file) throws IOException {
         return new DataOutputStream(new BufferedOutputStream(new FileOutputStream(file)));
+    }
+
+    public static Socket getSocket(Host host) throws IOException {
+        return new Socket(host.getName(),host.getPort());
     }
 
     public static void closeInputStream(InputStream stream){

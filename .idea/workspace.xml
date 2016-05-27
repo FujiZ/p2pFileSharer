@@ -1,18 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/src/host/server/P2PServer.java" line="57" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="d1159450-67ee-4473-9fd5-c5c477da4892" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/router/RouterServer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/router/RouterThread.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/utils/Host.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/utils/thread/HostUpdateThread.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/utils/thread/IOThread.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/CoreServer.java" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/host/HostEnv.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/router/thread/HostAddThread.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/router/thread/HostDelThread.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/p2pFileSharer/ClientThread.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/p2pFileSharer/P2PClient.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/p2pFileSharer/P2PServer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/p2pFileSharer/ServerThread.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/p2pFileSharer/Utility.class" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/client/ClientThread.java" afterPath="$PROJECT_DIR$/src/host/client/ClientThread.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/client/P2PClient.java" afterPath="$PROJECT_DIR$/src/host/client/P2PClient.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/server/P2PServer.java" afterPath="$PROJECT_DIR$/src/host/server/P2PServer.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/server/ServerThread.java" afterPath="$PROJECT_DIR$/src/host/server/ServerThread.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/utils/Utility.java" afterPath="$PROJECT_DIR$/src/utils/IOUtils.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/client/ClientThread.java" afterPath="$PROJECT_DIR$/src/client/ClientThread.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/server/P2PServer.java" afterPath="$PROJECT_DIR$/src/server/P2PServer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/server/ServerThread.java" afterPath="$PROJECT_DIR$/src/server/ServerThread.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/router/RouterServer.java" afterPath="$PROJECT_DIR$/src/router/RouterServer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/router/RouterThread.java" afterPath="$PROJECT_DIR$/src/router/RouterThread.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/utils/Host.java" afterPath="$PROJECT_DIR$/src/utils/Host.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/utils/thread/HostUpdateThread.java" afterPath="$PROJECT_DIR$/src/utils/thread/HostUpdateThread.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/utils/thread/IOThread.java" afterPath="$PROJECT_DIR$/src/utils/thread/IOThread.java" />
     </list>
     <ignored path="p2pFileSharer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,54 +48,78 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="RouterServer.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/router/RouterServer.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="120">
-                  <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="RouterThread.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/router/RouterThread.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="504">
-                  <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-                  <folding>
-                    <element signature="docComment;class#RouterThread#0" expanded="false" />
-                    <element signature="method#RouterThread#0;class#RouterThread#0" expanded="false" />
-                    <element signature="method#parseCmd#0;class#RouterThread#0" expanded="false" />
-                    <element signature="method#processBye#0;class#RouterThread#0" expanded="false" />
-                    <element signature="e#1155#1182#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="HostUpdateThread.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/utils/thread/HostUpdateThread.java">
+          <file leaf-file-name="IOThread.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/utils/thread/IOThread.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="192">
-                  <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-                  <folding />
+                  <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
+                  <folding>
+                    <element signature="docComment;class#IOThread#0" expanded="false" />
+                    <element signature="method#initSocketStream#0;class#IOThread#0" expanded="false" />
+                    <element signature="method#closeSocket#0;class#IOThread#0" expanded="false" />
+                    <element signature="method#sendErrorMsg#0;class#IOThread#0" expanded="false" />
+                    <element signature="method#checkArg#0;class#IOThread#0" expanded="false" />
+                    <element signature="method#run#0;class#IOThread#0" expanded="false" />
+                  </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Host.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/utils/Host.java">
+          <file leaf-file-name="P2PServer.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/host/server/P2PServer.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="348">
-                  <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
+                <state relative-caret-position="467">
+                  <caret line="43" column="23" selection-start-line="43" selection-start-column="23" selection-end-line="43" selection-end-column="23" />
                   <folding>
-                    <element signature="e#314#315#0" expanded="true" />
-                    <element signature="e#341#342#0" expanded="true" />
-                    <element signature="e#401#402#0" expanded="true" />
-                    <element signature="e#461#462#0" expanded="true" />
+                    <element signature="docComment;class#P2PServer#0" expanded="false" />
+                    <element signature="method#P2PServer#0;class#P2PServer#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ClientThread.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/host/client/ClientThread.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="264">
+                  <caret line="36" column="23" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
+                  <folding>
+                    <element signature="docComment;class#ClientThread#0" expanded="false" />
+                    <element signature="method#ClientThread#0;class#ClientThread#0" expanded="false" />
+                    <element signature="method#parseCmd#0;class#ClientThread#0" expanded="false" />
+                    <element signature="method#processGet#0;class#ClientThread#0" expanded="false" />
+                    <element signature="method#receiveFile#0;class#ClientThread#0" expanded="false" />
+                    <element signature="method#run#0;class#ClientThread#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="P2PClient.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/host/client/P2PClient.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="360">
+                  <caret line="41" column="38" selection-start-line="41" selection-start-column="38" selection-end-line="41" selection-end-column="38" />
+                  <folding>
+                    <element signature="docComment;class#P2PClient#0" expanded="false" />
+                    <element signature="method#P2PClient#0;class#P2PClient#0" expanded="false" />
+                    <element signature="method#run#0;class#P2PClient#0" expanded="false" />
+                    <element signature="e#1023#1024#0" expanded="true" />
+                    <element signature="e#1083#1084#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="HostEnv.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/host/HostEnv.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="360">
+                  <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#193#194#0" expanded="true" />
+                    <element signature="e#219#220#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -93,40 +128,29 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="RouterServer.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/router/RouterServer.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="168">
-                  <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
+                <state relative-caret-position="144">
+                  <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
                   <folding>
-                    <element signature="imports" expanded="true" />
+                    <element signature="e#1116#1117#0" expanded="true" />
+                    <element signature="e#1146#1147#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="IOThread.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/utils/thread/IOThread.java">
+          <file leaf-file-name="ServerThread.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/host/server/ServerThread.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="288">
-                  <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+                <state relative-caret-position="287">
+                  <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ServerThread.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/server/ServerThread.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="384">
-                  <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-                  <folding>
-                    <element signature="method#parseCmd#0;class#ServerThread#0" expanded="false" />
-                    <element signature="method#processGet#0;class#ServerThread#0" expanded="false" />
-                    <element signature="method#sendFile#0;class#ServerThread#0" expanded="false" />
+                    <element signature="docComment;class#ServerThread#0" expanded="false" />
+                    <element signature="method#ServerThread#0;class#ServerThread#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -160,19 +184,33 @@
         <option value="$PROJECT_DIR$/src/ServerThread.java" />
         <option value="$PROJECT_DIR$/src/P2PClient.java" />
         <option value="$PROJECT_DIR$/src/ClientThread.java" />
-        <option value="$PROJECT_DIR$/src/utils/Utility.java" />
         <option value="$PROJECT_DIR$/src/client/P2PClient.java" />
         <option value="$PROJECT_DIR$/src/CoreServer.java" />
         <option value="$PROJECT_DIR$/src/router/CoreServer.java" />
-        <option value="$PROJECT_DIR$/src/router/RouterServer.java" />
-        <option value="$PROJECT_DIR$/src/server/P2PServer.java" />
-        <option value="$PROJECT_DIR$/src/client/ClientThread.java" />
         <option value="$PROJECT_DIR$/src/utils/IOThread.java" />
-        <option value="$PROJECT_DIR$/src/server/ServerThread.java" />
-        <option value="$PROJECT_DIR$/src/utils/Host.java" />
-        <option value="$PROJECT_DIR$/src/router/RouterThread.java" />
         <option value="$PROJECT_DIR$/src/HostUpdateThread.java" />
+        <option value="$PROJECT_DIR$/src/server/P2PServer.java" />
+        <option value="$PROJECT_DIR$/src/router/RouterServer.java" />
+        <option value="$PROJECT_DIR$/src/HostAddThread.java" />
+        <option value="$PROJECT_DIR$/src/host/HostAcceptThread.java" />
+        <option value="$PROJECT_DIR$/src/utils/Host.java" />
+        <option value="$PROJECT_DIR$/src/client/ClientThread.java" />
+        <option value="$PROJECT_DIR$/src/router/RouterThread.java" />
         <option value="$PROJECT_DIR$/src/utils/thread/HostUpdateThread.java" />
+        <option value="$PROJECT_DIR$/src/host/HostAddThread.java" />
+        <option value="$PROJECT_DIR$/src/host/HostDelThread.java" />
+        <option value="$PROJECT_DIR$/src/server/ServerThread.java" />
+        <option value="$PROJECT_DIR$/src/router/HostDelThread.java" />
+        <option value="$PROJECT_DIR$/src/router/thread/HostDelThread.java" />
+        <option value="$PROJECT_DIR$/src/utils/Utility.java" />
+        <option value="$PROJECT_DIR$/src/utils/IOHandler.java" />
+        <option value="$PROJECT_DIR$/src/utils/IOUtils.java" />
+        <option value="$PROJECT_DIR$/src/utils/thread/IOThread.java" />
+        <option value="$PROJECT_DIR$/src/host/server/ServerThread.java" />
+        <option value="$PROJECT_DIR$/src/host/server/P2PServer.java" />
+        <option value="$PROJECT_DIR$/src/host/client/ClientThread.java" />
+        <option value="$PROJECT_DIR$/src/host/client/P2PClient.java" />
+        <option value="$PROJECT_DIR$/src/host/HostEnv.java" />
       </list>
     </option>
   </component>
@@ -222,7 +260,6 @@
       <pane id="ProjectPane">
         <subPane />
       </pane>
-      <pane id="Scratches" />
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -245,72 +282,13 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="utils" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="p2pFileSharer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="p2pFileSharer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="utils" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="thread" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="p2pFileSharer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="p2pFileSharer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="p2pFileSharer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="p2pFileSharer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="router" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="p2pFileSharer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="p2pFileSharer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
+              <option name="myItemId" value="host" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -343,7 +321,7 @@
     </configuration>
     <configuration default="false" name="P2PServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="server.P2PServer" />
+      <option name="MAIN_CLASS_NAME" value="host.server.P2PServer" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" />
@@ -358,7 +336,7 @@
     </configuration>
     <configuration default="false" name="P2PClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="client.P2PClient" />
+      <option name="MAIN_CLASS_NAME" value="host.client.P2PClient" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" />
@@ -796,11 +774,14 @@
       <workItem from="1464243949209" duration="9471000" />
       <workItem from="1464256192817" duration="10806000" />
       <workItem from="1464275963649" duration="6708000" />
+      <workItem from="1464320681858" duration="3321000" />
+      <workItem from="1464336168596" duration="8084000" />
+      <workItem from="1464362633467" duration="5825000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27618000" />
+    <option name="totallyTimeSpent" value="44848000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="28" width="1920" height="1052" extended-state="6" />
@@ -846,7 +827,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="9" />
+      <option name="time" value="11" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -855,32 +836,232 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/utils/thread/IOThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/P2PClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        <state relative-caret-position="72">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="docComment;class#P2PClient#0" expanded="false" />
-            <element signature="method#P2PClient#0;class#P2PClient#0" expanded="false" />
-            <element signature="e#452#453#0" expanded="false" />
-            <element signature="e#478#479#0" expanded="false" />
-            <element signature="method#run#0;class#P2PClient#0" expanded="false" />
-            <element signature="e#1018#1019#0" expanded="false" />
-            <element signature="e#1078#1079#0" expanded="false" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/ClientThread.java">
+    <entry file="file://$PROJECT_DIR$/src/router/thread/HostAddThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router/thread/HostDelThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router/RouterServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="744">
+          <caret line="40" column="4" selection-start-line="40" selection-start-column="4" selection-end-line="40" selection-end-column="4" />
+          <folding>
+            <element signature="e#1116#1117#0" expanded="true" />
+            <element signature="e#1146#1147#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/host/server/ServerThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#ServerThread#0" expanded="false" />
+            <element signature="method#ServerThread#0;class#ServerThread#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/thread/HostUpdateThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#initSocketStream#0;class#HostUpdateThread#0" expanded="false" />
+            <element signature="method#closeSocket#0;class#HostUpdateThread#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router/RouterThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="42" column="26" selection-start-line="42" selection-start-column="26" selection-end-line="42" selection-end-column="26" />
+          <folding>
+            <element signature="docComment;class#RouterThread#0" expanded="false" />
+            <element signature="method#RouterThread#0;class#RouterThread#0" expanded="false" />
+            <element signature="method#parseCmd#0;class#RouterThread#0" expanded="false" />
+            <element signature="method#processHello#0;class#RouterThread#0" expanded="false" />
+            <element signature="method#sendHostSet#0;class#RouterThread#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router/thread/HostAddThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/thread/HostUpdateThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#initSocketStream#0;class#HostUpdateThread#0" expanded="false" />
+            <element signature="method#closeSocket#0;class#HostUpdateThread#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router/RouterServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+          <folding>
+            <element signature="e#1116#1117#0" expanded="true" />
+            <element signature="e#1146#1147#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/host/client/ClientThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="63" column="18" selection-start-line="63" selection-start-column="18" selection-end-line="63" selection-end-column="18" />
+          <folding>
+            <element signature="docComment;class#ClientThread#0" expanded="false" />
+            <element signature="method#parseCmd#0;class#ClientThread#0" expanded="false" />
+            <element signature="method#processGet#0;class#ClientThread#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/host/server/ServerThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="768">
+          <caret line="36" column="28" selection-start-line="36" selection-start-column="28" selection-end-line="36" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#ServerThread#0" expanded="false" />
+            <element signature="method#ServerThread#0;class#ServerThread#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router/RouterThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding>
+            <element signature="docComment;class#RouterThread#0" expanded="false" />
+            <element signature="method#RouterThread#0;class#RouterThread#0" expanded="false" />
+            <element signature="method#parseCmd#0;class#RouterThread#0" expanded="false" />
+            <element signature="method#processHello#0;class#RouterThread#0" expanded="false" />
+            <element signature="method#sendHostSet#0;class#RouterThread#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/thread/HostUpdateThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#initSocketStream#0;class#HostUpdateThread#0" expanded="false" />
+            <element signature="method#closeSocket#0;class#HostUpdateThread#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/Host.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
+          <folding>
+            <element signature="e#869#870#0" expanded="true" />
+            <element signature="e#905#906#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router/RouterServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
+          <folding>
+            <element signature="e#1116#1117#0" expanded="true" />
+            <element signature="e#1146#1147#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/thread/IOThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/host/server/ServerThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#ServerThread#0" expanded="false" />
+            <element signature="method#ServerThread#0;class#ServerThread#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/host/client/P2PClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <element signature="docComment;class#P2PClient#0" expanded="false" />
+            <element signature="method#P2PClient#0;class#P2PClient#0" expanded="false" />
+            <element signature="method#run#0;class#P2PClient#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/host/client/ClientThread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
@@ -888,7 +1069,6 @@
             <element signature="docComment;class#ClientThread#0" expanded="false" />
             <element signature="method#parseCmd#0;class#ClientThread#0" expanded="false" />
             <element signature="method#processGet#0;class#ClientThread#0" expanded="false" />
-            <element signature="method#receiveFile#0;class#ClientThread#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -898,51 +1078,51 @@
         <state relative-caret-position="120">
           <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1116#1117#0" expanded="true" />
+            <element signature="e#1146#1147#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/P2PServer.java">
+    <entry file="file://$PROJECT_DIR$/src/host/server/P2PServer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="docComment;class#P2PServer#0" expanded="false" />
-            <element signature="method#main#0;class#P2PServer#0" expanded="false" />
+            <element signature="method#P2PServer#0;class#P2PServer#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/Utility.java">
+    <entry file="file://$PROJECT_DIR$/src/utils/IOUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
           <folding>
-            <element signature="docComment;class#Utility#0" expanded="false" />
-            <element signature="method#getBufferedReader#0;class#Utility#0" expanded="false" />
-            <element signature="method#getPrintWriter#0;class#Utility#0" expanded="false" />
-            <element signature="method#getInputStream#0;class#Utility#0" expanded="false" />
-            <element signature="method#getOutputStream#0;class#Utility#0" expanded="false" />
-            <element signature="method#getOutputStream#1;class#Utility#0" expanded="false" />
-            <element signature="method#closeInputStream#0;class#Utility#0" expanded="false" />
-            <element signature="method#closeOutputStream#0;class#Utility#0" expanded="false" />
-            <element signature="method#closeWriter#0;class#Utility#0" expanded="false" />
-            <element signature="method#closeReader#0;class#Utility#0" expanded="false" />
-            <element signature="method#closeSocket#0;class#Utility#0" expanded="false" />
+            <element signature="docComment;class#IOUtils#0" expanded="false" />
+            <element signature="method#getBufferedReader#0;class#IOUtils#0" expanded="false" />
+            <element signature="method#getPrintWriter#0;class#IOUtils#0" expanded="false" />
+            <element signature="method#getInputStream#0;class#IOUtils#0" expanded="false" />
+            <element signature="method#getOutputStream#0;class#IOUtils#0" expanded="false" />
+            <element signature="method#getOutputStream#1;class#IOUtils#0" expanded="false" />
+            <element signature="method#closeInputStream#0;class#IOUtils#0" expanded="false" />
+            <element signature="method#closeOutputStream#0;class#IOUtils#0" expanded="false" />
+            <element signature="method#closeWriter#0;class#IOUtils#0" expanded="false" />
+            <element signature="method#closeReader#0;class#IOUtils#0" expanded="false" />
+            <element signature="method#closeSocket#0;class#IOUtils#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/ServerThread.java">
+    <entry file="file://$PROJECT_DIR$/src/host/server/ServerThread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="method#parseCmd#0;class#ServerThread#0" expanded="false" />
-            <element signature="method#processGet#0;class#ServerThread#0" expanded="false" />
-            <element signature="method#sendFile#0;class#ServerThread#0" expanded="false" />
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#ServerThread#0" expanded="false" />
+            <element signature="method#ServerThread#0;class#ServerThread#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -951,7 +1131,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
           <caret line="3" column="42" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -959,7 +1138,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -973,133 +1151,50 @@
     <entry file="jar:///usr/lib/jvm/java-8-openjdk/jre/lib/rt.jar!/java/lang/Runnable.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
-          <caret line="9" column="9" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/P2PClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="docComment;class#P2PClient#0" expanded="false" />
-            <element signature="method#P2PClient#0;class#P2PClient#0" expanded="false" />
-            <element signature="e#452#453#0" expanded="false" />
-            <element signature="e#478#479#0" expanded="false" />
-            <element signature="method#run#0;class#P2PClient#0" expanded="false" />
-            <element signature="e#1018#1019#0" expanded="false" />
-            <element signature="e#1078#1079#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/Utility.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="29" column="31" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="31" />
-          <folding>
-            <element signature="docComment;class#Utility#0" expanded="false" />
-            <element signature="method#getBufferedReader#0;class#Utility#0" expanded="false" />
-            <element signature="method#getPrintWriter#0;class#Utility#0" expanded="false" />
-            <element signature="method#getInputStream#0;class#Utility#0" expanded="false" />
-            <element signature="method#getOutputStream#0;class#Utility#0" expanded="false" />
-            <element signature="method#getOutputStream#1;class#Utility#0" expanded="false" />
-            <element signature="method#closeInputStream#0;class#Utility#0" expanded="false" />
-            <element signature="method#closeOutputStream#0;class#Utility#0" expanded="false" />
-            <element signature="method#closeWriter#0;class#Utility#0" expanded="false" />
-            <element signature="method#closeReader#0;class#Utility#0" expanded="false" />
-            <element signature="method#closeSocket#0;class#Utility#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/ClientThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="19" column="4" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
-          <folding>
-            <element signature="docComment;class#ClientThread#0" expanded="false" />
-            <element signature="method#parseCmd#0;class#ClientThread#0" expanded="false" />
-            <element signature="method#processGet#0;class#ClientThread#0" expanded="false" />
-            <element signature="method#receiveFile#0;class#ClientThread#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/P2PServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="27" column="32" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;class#P2PServer#0" expanded="false" />
-            <element signature="method#main#0;class#P2PServer#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/router/RouterServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/Host.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
+        <state relative-caret-position="588">
+          <caret line="42" column="28" selection-start-line="42" selection-start-column="28" selection-end-line="42" selection-end-column="28" />
           <folding>
-            <element signature="e#314#315#0" expanded="true" />
-            <element signature="e#341#342#0" expanded="true" />
-            <element signature="e#401#402#0" expanded="true" />
-            <element signature="e#461#462#0" expanded="true" />
+            <element signature="e#869#870#0" expanded="true" />
+            <element signature="e#905#906#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/host/HostAcceptThread.java" />
     <entry file="file://$PROJECT_DIR$/src/router/RouterThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+        <state relative-caret-position="444">
+          <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
           <folding>
             <element signature="docComment;class#RouterThread#0" expanded="false" />
             <element signature="method#RouterThread#0;class#RouterThread#0" expanded="false" />
             <element signature="method#parseCmd#0;class#RouterThread#0" expanded="false" />
-            <element signature="method#processBye#0;class#RouterThread#0" expanded="false" />
-            <element signature="e#1155#1182#0" expanded="false" />
+            <element signature="method#processHello#0;class#RouterThread#0" expanded="false" />
+            <element signature="method#sendHostSet#0;class#RouterThread#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/ServerThread.java">
+    <entry file="file://$PROJECT_DIR$/src/router/thread/HostDelThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+        <state relative-caret-position="240">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
           <folding>
-            <element signature="method#parseCmd#0;class#ServerThread#0" expanded="false" />
-            <element signature="method#processGet#0;class#ServerThread#0" expanded="false" />
-            <element signature="method#sendFile#0;class#ServerThread#0" expanded="false" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/thread/IOThread.java">
+    <entry file="file://$PROJECT_DIR$/src/router/thread/HostAddThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+        <state relative-caret-position="240">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1108,9 +1203,135 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/thread/HostUpdateThread.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="890">
+          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#initSocketStream#0;class#HostUpdateThread#0" expanded="false" />
+            <element signature="method#closeSocket#0;class#HostUpdateThread#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/IOUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="9" column="39" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="docComment;class#IOUtils#0" expanded="false" />
+            <element signature="method#getBufferedReader#0;class#IOUtils#0" expanded="false" />
+            <element signature="method#getPrintWriter#0;class#IOUtils#0" expanded="false" />
+            <element signature="method#getInputStream#0;class#IOUtils#0" expanded="false" />
+            <element signature="method#getOutputStream#0;class#IOUtils#0" expanded="false" />
+            <element signature="method#getOutputStream#1;class#IOUtils#0" expanded="false" />
+            <element signature="method#getSocket#0;class#IOUtils#0" expanded="false" />
+            <element signature="method#closeInputStream#0;class#IOUtils#0" expanded="false" />
+            <element signature="method#closeOutputStream#0;class#IOUtils#0" expanded="false" />
+            <element signature="method#closeWriter#0;class#IOUtils#0" expanded="false" />
+            <element signature="method#closeReader#0;class#IOUtils#0" expanded="false" />
+            <element signature="method#closeSocket#0;class#IOUtils#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
+          <folding>
+            <element signature="e#64#65#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/thread/IOThread.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
+          <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
+          <folding>
+            <element signature="docComment;class#IOThread#0" expanded="false" />
+            <element signature="method#initSocketStream#0;class#IOThread#0" expanded="false" />
+            <element signature="method#closeSocket#0;class#IOThread#0" expanded="false" />
+            <element signature="method#sendErrorMsg#0;class#IOThread#0" expanded="false" />
+            <element signature="method#checkArg#0;class#IOThread#0" expanded="false" />
+            <element signature="method#run#0;class#IOThread#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/host/server/P2PServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="467">
+          <caret line="43" column="23" selection-start-line="43" selection-start-column="23" selection-end-line="43" selection-end-column="23" />
+          <folding>
+            <element signature="docComment;class#P2PServer#0" expanded="false" />
+            <element signature="method#P2PServer#0;class#P2PServer#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router/RouterServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+          <folding>
+            <element signature="e#1116#1117#0" expanded="true" />
+            <element signature="e#1146#1147#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/host/server/ServerThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#ServerThread#0" expanded="false" />
+            <element signature="method#ServerThread#0;class#ServerThread#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/host/client/ClientThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="36" column="23" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
+          <folding>
+            <element signature="docComment;class#ClientThread#0" expanded="false" />
+            <element signature="method#ClientThread#0;class#ClientThread#0" expanded="false" />
+            <element signature="method#parseCmd#0;class#ClientThread#0" expanded="false" />
+            <element signature="method#processGet#0;class#ClientThread#0" expanded="false" />
+            <element signature="method#receiveFile#0;class#ClientThread#0" expanded="false" />
+            <element signature="method#run#0;class#ClientThread#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/host/client/P2PClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="41" column="38" selection-start-line="41" selection-start-column="38" selection-end-line="41" selection-end-column="38" />
+          <folding>
+            <element signature="docComment;class#P2PClient#0" expanded="false" />
+            <element signature="method#P2PClient#0;class#P2PClient#0" expanded="false" />
+            <element signature="method#run#0;class#P2PClient#0" expanded="false" />
+            <element signature="e#1023#1024#0" expanded="true" />
+            <element signature="e#1083#1084#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/host/HostEnv.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#193#194#0" expanded="true" />
+            <element signature="e#219#220#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

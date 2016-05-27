@@ -1,6 +1,6 @@
 package utils.thread;
 
-import utils.Utility;
+import utils.IOUtils;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -16,14 +16,26 @@ public abstract class IOThread implements Runnable{
     }
 
     protected void initSocketStream() throws IOException {
-        dis= Utility.getInputStream(socket);
-        dos=Utility.getOutputStream(socket);
+        dis= IOUtils.getInputStream(socket);
+        dos= IOUtils.getOutputStream(socket);
     }
 
     protected void closeSocket(){
-        Utility.closeInputStream(dis);
-        Utility.closeOutputStream(dos);
-        Utility.closeSocket(socket);
+        IOUtils.closeInputStream(dis);
+        IOUtils.closeOutputStream(dos);
+        IOUtils.closeSocket(socket);
+    }
+
+    protected void sendErrorMsg(String msg) throws IOException {
+        dos.writeUTF("ERROR "+msg);
+    }
+
+    protected boolean checkArg(String[] argv,int count) throws IOException {
+        if(argv.length!=count) {
+            sendErrorMsg("INVALID ARGS");
+            return false;
+        }
+        return true;
     }
 
     protected abstract void parseCmd(String cmdStr) throws IOException;

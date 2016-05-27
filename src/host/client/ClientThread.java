@@ -1,7 +1,7 @@
-package client;
+package host.client;
 
 import utils.thread.IOThread;
-import utils.Utility;
+import utils.IOUtils;
 
 import java.io.*;
 import java.net.Socket;
@@ -19,23 +19,32 @@ public class ClientThread extends IOThread{
         System.out.println("Connection success");
     }
 
-    private void parseCmd(String cmdStr) throws IOException {
+    protected void parseCmd(String cmdStr) throws IOException {
         String[] argv=cmdStr.split(" ");
         switch (argv[0].toUpperCase()){
             case "GET":
-                processGet(argv);
-                break;
+                processGet(argv); break;
+            case "HELLO":
+                processHello(argv); break;
+            case "BYE":
+                processBye(argv); break;
             default:
                 System.out.println("Invalid input");
                 break;
         }
     }
 
+    private void processHello(String[] argv) {
+
+    }
+
+    private void processBye(String[] argv) {
+
+    }
+
     private void processGet(String[] argv) throws IOException {
-        if(argv.length!=2){
-            // TODO: 16-5-26 参数错误
-            return;
-        }
+        if(!checkArg(argv,2))return;
+
         File file=Paths.get(client.getDir().getAbsolutePath(),argv[1]).toFile();
         if(file.exists()){
             System.out.println("File already exists!");
@@ -58,18 +67,18 @@ public class ClientThread extends IOThread{
         long fileSize=Long.parseLong(dis.readUTF().split(" ")[1]);
         byte[] buffer=new byte[BUFSIZE];
         long passedlen=0;
-        DataOutputStream fileOut= Utility.getOutputStream(file);
-        System.out.println("文件长度为: "+fileSize);
-        System.out.println("开始接收文件");
+        DataOutputStream fileOut= IOUtils.getOutputStream(file);
+        System.out.println("File size: "+fileSize);
+        System.out.println("Receiving file");
         while (true){
             int read=dis.read(buffer);
             if(read==-1)
                 break;
             fileOut.write(buffer,0,read);
             passedlen+=read;
-            System.out.println("文件接收了"+(passedlen*100/fileSize)+"%");
+            System.out.println(file.getName()+" received"+(passedlen*100/fileSize)+"%");
         }
-        System.out.println("接收完成");
+        System.out.println("Receive complete");
         fileOut.close();
     }
 

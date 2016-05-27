@@ -17,10 +17,6 @@ public class Host {
         return port;
     }
 
-    public boolean equal(Host b){
-        return true;
-    }
-
     public static Host parseHost(String host,String port){
         return new Host(host,Integer.parseInt(port));
     }
@@ -40,6 +36,11 @@ public class Host {
             return false;
         Host other = (Host) obj;
         return name.equals(other.name)&&port==other.port;
+    }
+
+    @Override
+    public String toString(){
+        return name+" "+port;
     }
 
     private String name;
