@@ -1,7 +1,9 @@
 package utils;
 
 import java.io.*;
+import java.net.InetAddress;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
 /**
  * Created by fuji on 16-5-26.
@@ -79,6 +81,10 @@ public class IOUtils {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static String getHostname() throws UnknownHostException {
+        return InetAddress.getLocalHost().getHostAddress();
     }
 
 }

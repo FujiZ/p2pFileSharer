@@ -1,6 +1,7 @@
 package host.client;
 
-import java.io.File;
+import host.HostEnv;
+
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
@@ -11,14 +12,9 @@ import java.util.concurrent.Executors;
  */
 public class P2PClient implements Runnable{
 
-    public P2PClient(String dir){
+    public P2PClient(HostEnv hostEnv){
         executorService= Executors.newCachedThreadPool();
-        this.dir=new File(dir);
-        // TODO: 16-5-26 判断dir是否为目录
-    }
-
-    public File getDir(){
-        return dir;
+        this.hostEnv=hostEnv;
     }
 
     @Override
@@ -27,21 +23,19 @@ public class P2PClient implements Runnable{
         Scanner sc=new Scanner(System.in);
         while (true){
             String line=sc.nextLine();
-            if(line.toUpperCase().equals("EXIT"))
-                break;
+            if(line.toUpperCase().equals("EXIT")){
+                hostEnv.getServer().sendBye();
+                System.exit(0);
+            }
             try {
-                executorService.execute(new ClientThread(this,line,"127.0.0.1",12345));
+                // fixed: 16-5-26 每一个命令都创建一个线程
+                executorService.execute(new ClientThread(hostEnv,line,"127.0.0.1",12345));
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        // fixed: 16-5-26 每一个命令都创建一个线程
-    }
-
-    public static void main(String[] argv){
-        new P2PClient("/home/fuji/tmp/client").run();
     }
 
     private ExecutorService executorService;
-    private File dir;
+    private HostEnv hostEnv;
 }

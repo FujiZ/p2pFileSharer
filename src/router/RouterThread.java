@@ -50,7 +50,7 @@ public class RouterThread extends IOThread{
         }
         //将host加入当前set
         server.getHostSet().add(newHost);
-        //todo:  向host发送更新当前的set
+        //向host发送更新当前的set
         sendHostSet(newHost);
     }
 
@@ -64,7 +64,7 @@ public class RouterThread extends IOThread{
         }
     }
 
-    private void processBye(String[] argv){
+    private void processBye(String[] argv) throws IOException {
         //BYE HOSTNAME PORT
         if(argv.length!=3){
             // TODO: 16-5-27 参数错误

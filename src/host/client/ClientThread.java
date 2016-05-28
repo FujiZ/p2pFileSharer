@@ -1,5 +1,7 @@
 package host.client;
 
+import host.HostEnv;
+import utils.Host;
 import utils.thread.IOThread;
 import utils.IOUtils;
 
@@ -12,9 +14,9 @@ import java.nio.file.Paths;
  */
 public class ClientThread extends IOThread{
 
-    public ClientThread(P2PClient client,String cmdStr,String hostname,int port) throws IOException {
+    public ClientThread(HostEnv hostEnv, String cmdStr, String hostname, int port) throws IOException {
         super(new Socket(hostname,port));
-        this.client=client;
+        this.hostEnv=hostEnv;
         this.cmdStr=cmdStr;
         System.out.println("Connection success");
     }
@@ -24,28 +26,32 @@ public class ClientThread extends IOThread{
         switch (argv[0].toUpperCase()){
             case "GET":
                 processGet(argv); break;
-            case "HELLO":
-                processHello(argv); break;
-            case "BYE":
-                processBye(argv); break;
+            case "LIST":
+                processList(argv); break;
             default:
                 System.out.println("Invalid input");
                 break;
         }
     }
 
-    private void processHello(String[] argv) {
-
-    }
-
-    private void processBye(String[] argv) {
-
+    private void processList(String[] argv) throws IOException {
+        if(!checkArg(argv,1))return;
+        String[] response=dis.readUTF().split(" ");
+        if(response[0].equals("FILECOUNT")){
+            int fileCount=Integer.parseInt(response[1]);
+            for(int i=0;i<fileCount;++i){
+                System.out.println(dis.readUTF());
+            }
+        }
+        else{
+            System.out.println("List failed");
+        }
     }
 
     private void processGet(String[] argv) throws IOException {
         if(!checkArg(argv,2))return;
 
-        File file=Paths.get(client.getDir().getAbsolutePath(),argv[1]).toFile();
+        File file=Paths.get(hostEnv.getDir().getAbsolutePath(),argv[1]).toFile();
         if(file.exists()){
             System.out.println("File already exists!");
             return;
@@ -95,6 +101,6 @@ public class ClientThread extends IOThread{
         }
     }
 
-    private P2PClient client;
+    private HostEnv hostEnv;
     private String cmdStr;
 }

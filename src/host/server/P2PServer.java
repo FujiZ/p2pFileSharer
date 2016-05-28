@@ -1,14 +1,14 @@
 package host.server;
 
+import host.HostEnv;
 import utils.Host;
+import utils.IOUtils;
 
-import java.io.File;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -17,31 +17,75 @@ import java.util.concurrent.Executors;
  */
 public class P2PServer implements Runnable{
 
-    public P2PServer(String dir,int port) throws IOException {
+    public P2PServer(HostEnv hostEnv, int port) throws IOException {
         executorService=Executors.newCachedThreadPool();
-        hostSet= Collections.synchronizedSet(new HashSet<>());
-        this.dir=new File(dir);
-        // TODO: 16-5-26 判断dir是否为目录
+        this.hostEnv=hostEnv;
+        this.port=port;
         serverSocket=new ServerSocket(port);
         System.out.println("P2Pserver started successfully on "+port);
     }
 
-    public void addHost(Host host){
-        hostSet.add(host);
+    private void sendHello(){
+        Socket socket=null;
+        DataInputStream dis=null;
+        DataOutputStream dos=null;
+        try {
+            socket=IOUtils.getSocket(hostEnv.getRouter());
+            dis=IOUtils.getInputStream(socket);
+            dos=IOUtils.getOutputStream(socket);
+            //send HELLO HOSTNAME PORT to router
+            dos.writeUTF("HELLO "+IOUtils.getHostname()+" "+port);
+            String response=dis.readUTF();
+            if(response.startsWith("ACCEPT")){
+                //HOSTNUM count
+                int hostCount=Integer.parseInt(dis.readUTF().split(" ")[1]);
+                for(int i=0;i<hostCount;++i){
+                    //ADD HOSTNAME PORT
+                    String[] argv=dis.readUTF().split(" ");
+                    hostEnv.addHost(Host.parseHost(argv[1],argv[2]));
+                }
+            }
+            else {
+                System.out.println(response);
+            }
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        finally {
+            IOUtils.closeInputStream(dis);
+            IOUtils.closeOutputStream(dos);
+            IOUtils.closeSocket(socket);
+        }
     }
 
-    public void removeHost(Host host){
-        hostSet.remove(host);
+    public void sendBye(){
+        Socket socket=null;
+        DataOutputStream dos=null;
+        try {
+            socket=IOUtils.getSocket(hostEnv.getRouter());
+            dos=IOUtils.getOutputStream(socket);
+            //send BYE HOSTNAME PORT to router
+            dos.writeUTF("BYE "+IOUtils.getHostname()+" "+port);
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        finally {
+            IOUtils.closeOutputStream(dos);
+            IOUtils.closeSocket(socket);
+        }
     }
 
     @Override
     public void run(){
+        sendHello();
         while (true){
             Socket socket;
             try {
                 socket=serverSocket.accept();
                 // fixed: 16-5-26 fork a thread to process request
-                executorService.execute(new ServerThread(this,socket));
+                executorService.execute(new ServerThread(hostEnv,socket));
             }
             catch (IOException e){
                 e.printStackTrace();
@@ -49,22 +93,10 @@ public class P2PServer implements Runnable{
         }
     }
 
-    public File getDir(){
-        return dir;
-    }
-
-    public static void main(String[] argv){
-        try {
-            new P2PServer("/home/fuji/tmp/server",12345).run();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     // fixed: 16-5-26 threadpool is needed to process connections
     private ExecutorService executorService;
-    private final Set<Host> hostSet;
     private ServerSocket serverSocket;
-    private File dir;
+    private HostEnv hostEnv;
+    private int port;
 
 }

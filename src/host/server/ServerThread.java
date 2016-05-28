@@ -1,5 +1,6 @@
 package host.server;
 
+import host.HostEnv;
 import utils.Host;
 import utils.thread.IOThread;
 import utils.IOUtils;
@@ -12,9 +13,9 @@ import java.net.Socket;
  */
 public class ServerThread extends IOThread{
 
-    public ServerThread(P2PServer server, Socket socket){
+    public ServerThread(HostEnv hostEnv, Socket socket){
         super(socket);
-        this.server=server;
+        this.hostEnv=hostEnv;
     }
 
     @Override
@@ -38,7 +39,7 @@ public class ServerThread extends IOThread{
         if(!checkArg(argv,1))return;
 
         int count=0;
-        File[] fileList=server.getDir().listFiles();
+        File[] fileList=hostEnv.getDir().listFiles();
         assert fileList!=null;
         for(File file:fileList){
             if(file.isFile())
@@ -56,21 +57,21 @@ public class ServerThread extends IOThread{
         if(!checkArg(argv,3))return;
 
         Host newHost=Host.parseHost(argv[1],argv[2]);
-        server.addHost(newHost);
+        hostEnv.addHost(newHost);
     }
 
     private void processDel(String[] argv) throws IOException{
         if(!checkArg(argv,3))return;
 
         Host oldHost=Host.parseHost(argv[1],argv[2]);
-        server.removeHost(oldHost);
+        hostEnv.removeHost(oldHost);
     }
 
     private void processGet(String[] argv) throws IOException {
         if(!checkArg(argv,2))return;
 
         // fixed: 16-5-26 find the file in cur dir
-        File[] fileList=server.getDir().listFiles();
+        File[] fileList=hostEnv.getDir().listFiles();
         assert fileList!=null;
         for(File file:fileList){
             if(file.isFile()&&file.getName().equals(argv[1])){
@@ -101,5 +102,6 @@ public class ServerThread extends IOThread{
         System.out.println("Transfer complete");
     }
 
-    private P2PServer server;
+    private HostEnv hostEnv;
+
 }

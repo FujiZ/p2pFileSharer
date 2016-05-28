@@ -20,7 +20,7 @@ public class RouterServer implements Runnable{
         executorService= Executors.newCachedThreadPool();
         serverSocket=new ServerSocket(port);
         hostSet=Collections.synchronizedSet(new HashSet<>());
-        System.out.println("Router host.server started successfully on "+port);
+        System.out.println("Router server started successfully on "+port);
     }
 
     @Override
@@ -35,6 +35,14 @@ public class RouterServer implements Runnable{
             catch (IOException e){
                 e.printStackTrace();
             }
+        }
+    }
+
+    public static void main(String[] argv){
+        try {
+            new RouterServer(10240).run();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
