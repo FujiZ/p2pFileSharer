@@ -1,7 +1,7 @@
 package host;
 
-import host.client.P2PClient;
 import host.server.P2PServer;
+import host.client.Client;
 import utils.Host;
 
 import java.io.File;
@@ -34,11 +34,11 @@ public class HostEnv {
         this.server = server;
     }
 
-    public P2PClient getClient() {
+    public Client getClient() {
         return client;
     }
 
-    public void setClient(P2PClient client) {
+    public void setClient(Client client) {
         this.client = client;
     }
 
@@ -50,8 +50,8 @@ public class HostEnv {
         hostMap.put(name,host);
     }
 
-    public void removeHost(String name){
-        hostMap.remove(name);
+    public Host removeHost(String name){
+        return hostMap.remove(name);
     }
 
     public String getName(){
@@ -66,7 +66,7 @@ public class HostEnv {
     private Host router;
     private String name;
     private P2PServer server;
-    private P2PClient client;
+    private Client client;
     private final Map<String,Host> hostMap;
 
 }

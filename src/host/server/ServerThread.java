@@ -20,6 +20,7 @@ public class ServerThread extends IOThread{
 
     @Override
     protected void parseCmd(String cmdStr) throws IOException {
+        System.out.println("Received cmd: "+cmdStr);
         String[] argv=cmdStr.split(" ");
         switch (argv[0].toUpperCase()){
             case "GET":
@@ -56,16 +57,17 @@ public class ServerThread extends IOThread{
     private void processAdd(String[] argv) throws IOException{
         if(!checkArg(argv,4))return;
 
-        String name=argv[1];
-        Host newHost=Host.parseHost(argv[2],argv[3]);
-        hostEnv.addHost(name,newHost);
+        Host newHost=Host.parseHost(argv[1],argv[2],argv[3]);
+        hostEnv.addHost(argv[1],newHost);
+        hostEnv.getClient().addHost(newHost);
     }
 
     private void processDel(String[] argv) throws IOException{
         if(!checkArg(argv,2))return;
 
         String name=argv[1];
-        hostEnv.removeHost(name);
+        Host oldHost=hostEnv.removeHost(name);
+        hostEnv.getClient().delHost(oldHost);
     }
 
     private void processGet(String[] argv) throws IOException {

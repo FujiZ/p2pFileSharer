@@ -14,8 +14,8 @@ import java.nio.file.Paths;
  */
 public class ClientThread extends IOThread{
 
-    public ClientThread(HostEnv hostEnv, String cmdStr, String hostname, int port) throws IOException {
-        super(new Socket(hostname,port));
+    public ClientThread(HostEnv hostEnv, String cmdStr, Host host) throws IOException {
+        super(IOUtils.getSocket(host));
         this.hostEnv=hostEnv;
         this.cmdStr=cmdStr;
         System.out.println("Connection success");
@@ -36,11 +36,16 @@ public class ClientThread extends IOThread{
 
     private void processList(String[] argv) throws IOException {
         if(!checkArg(argv,1))return;
+        dos.writeUTF("LIST");
         String[] response=dis.readUTF().split(" ");
         if(response[0].equals("FILECOUNT")){
             int fileCount=Integer.parseInt(response[1]);
-            for(int i=0;i<fileCount;++i){
-                System.out.println(dis.readUTF());
+            synchronized (hostEnv.getClient()){
+                hostEnv.getClient().clearFileList();
+                for(int i=0;i<fileCount;++i){
+                    String[] fileArg=dis.readUTF().split(" ");
+                    hostEnv.getClient().addFile(fileArg[1],fileArg[2]);
+                }
             }
         }
         else{

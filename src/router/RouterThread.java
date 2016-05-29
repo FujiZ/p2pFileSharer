@@ -43,7 +43,7 @@ public class RouterThread extends IOThread{
         }
 
         String name=argv[1];
-        Host newHost=Host.parseHost(argv[2],argv[3]);
+        Host newHost=Host.parseHost(name,argv[2],argv[3]);
         //检查昵称是否已经存在
         if(server.getHostMap().containsKey(name)){
             sendErrorMsg("NAME EXISTS");
@@ -53,7 +53,7 @@ public class RouterThread extends IOThread{
         //向set中的所有主机广播ADD信息
         synchronized (server.getHostMap()){
             for(Map.Entry<String,Host> hostEntry:server.getHostMap().entrySet()){
-                executorService.execute(new HostAddThread(hostEntry.getValue(),name,newHost));
+                executorService.execute(new HostAddThread(hostEntry.getValue(),newHost));
             }
         }
         //将host加入当前set
@@ -67,7 +67,7 @@ public class RouterThread extends IOThread{
         dos.writeUTF("HOSTNUM "+server.getHostMap().size());
         synchronized (server.getHostMap()){
             for(Map.Entry<String,Host> hostEntry:server.getHostMap().entrySet()){
-                dos.writeUTF("ADD "+hostEntry.getKey()+" "+hostEntry.getValue());
+                dos.writeUTF("ADD "+hostEntry.getKey()+" "+hostEntry.getValue().getAddr());
             }
         }
     }

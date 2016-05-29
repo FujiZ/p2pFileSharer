@@ -27,12 +27,13 @@ public class P2PClient implements Runnable{
                 hostEnv.getServer().sendBye();
                 System.exit(0);
             }
+            /*
             try {
                 // fixed: 16-5-26 每一个命令都创建一个线程
-                executorService.execute(new ClientThread(hostEnv,line,"127.0.0.1",12345));
+                //executorService.execute(new ClientThread(hostEnv,line,"127.0.0.1",12345));
             } catch (IOException e) {
                 e.printStackTrace();
-            }
+            }*/
         }
     }
 

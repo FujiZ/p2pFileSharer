@@ -34,15 +34,15 @@ public class P2PServer implements Runnable{
             dis=IOUtils.getInputStream(socket);
             dos=IOUtils.getOutputStream(socket);
             //send HELLO HOSTNAME HOSTADDR PORT to router
-            dos.writeUTF("HELLO "+hostEnv.getName()+" "+IOUtils.getHostAddr()+" "+port);
+            dos.writeUTF("HELLO "+hostEnv.getName()+" "+IOUtils.getHostIP()+" "+port);
             String response=dis.readUTF();
             if(response.startsWith("ACCEPT")){
                 //HOSTNUM count
                 int hostCount=Integer.parseInt(dis.readUTF().split(" ")[1]);
                 for(int i=0;i<hostCount;++i){
-                    //ADD HOSTNAME HOSTADDR PORT
+                    //ADD HOSTNAME HOSTIP PORT
                     String[] argv=dis.readUTF().split(" ");
-                    hostEnv.addHost(argv[1],Host.parseHost(argv[2],argv[3]));
+                    hostEnv.addHost(argv[1],Host.parseHost(argv[1],argv[2],argv[3]));
                 }
             }
             else {
@@ -76,19 +76,29 @@ public class P2PServer implements Runnable{
         finally {
             IOUtils.closeOutputStream(dos);
             IOUtils.closeSocket(socket);
+            try {
+                serverSocket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            shutdownRequested=true;
         }
     }
 
     @Override
     public void run(){
-        while (true){
-            Socket socket;
-            try {
-                socket=serverSocket.accept();
+        try {
+            while (!shutdownRequested){
+                Socket socket=serverSocket.accept();
                 // fixed: 16-5-26 fork a thread to process request
                 executorService.execute(new ServerThread(hostEnv,socket));
             }
-            catch (IOException e){
+        } catch (IOException e){
+            e.printStackTrace();
+        } finally {
+            try {
+                serverSocket.close();
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
@@ -99,5 +109,6 @@ public class P2PServer implements Runnable{
     private ServerSocket serverSocket;
     private HostEnv hostEnv;
     private int port;
+    private boolean shutdownRequested=false;
 
 }

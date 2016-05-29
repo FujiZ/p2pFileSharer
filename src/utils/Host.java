@@ -4,30 +4,39 @@ package utils;
  * Created by fuji on 16-5-26.
  */
 public class Host {
-    public Host(String addr,int port){
-        this.addr =addr;
+    public Host(String name,String addr,int port){
+        this.name=name;
+        this.ip =addr;
         this.port=port;
     }
 
-    public String getAddr() {
-        return addr;
+    public String getIP() {
+        return ip;
     }
 
     public int getPort() {
         return port;
     }
 
-    public static Host parseHost(String host,String port){
-        return new Host(host,Integer.parseInt(port));
+    public String getName(){
+        return name;
+    }
+
+    public String getAddr(){
+        return ip+" "+port;
+    }
+
+    public static Host parseHost(String name,String host,String port){
+        return new Host(name,host,Integer.parseInt(port));
     }
 
     public static String formatHost(String name,Host host){
-        return name+"@"+host.addr+":"+host.port;
+        return name+"@"+host.ip +":"+host.port;
     }
 
     @Override
     public int hashCode() {
-        return addr.hashCode()^Integer.hashCode(port);
+        return ip.hashCode()^Integer.hashCode(port);
     }
 
     @Override
@@ -39,14 +48,15 @@ public class Host {
         if (getClass() != obj.getClass())
             return false;
         Host other = (Host) obj;
-        return addr.equals(other.addr)&&port==other.port;
+        return name.equals(other.name)&& ip.equals(other.ip)&&port==other.port;
     }
 
     @Override
     public String toString(){
-        return addr +" "+port;
+        return name+"@"+ ip +":"+port;
     }
 
-    private String addr;
+    private String name;
+    private String ip;
     private int port;
 }
