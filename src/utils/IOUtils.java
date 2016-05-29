@@ -30,7 +30,7 @@ public class IOUtils {
     }
 
     public static Socket getSocket(Host host) throws IOException {
-        return new Socket(host.getName(),host.getPort());
+        return new Socket(host.getAddr(),host.getPort());
     }
 
     public static void closeInputStream(InputStream stream){
@@ -83,7 +83,7 @@ public class IOUtils {
         }
     }
 
-    public static String getHostname() throws UnknownHostException {
+    public static String getHostAddr() throws UnknownHostException {
         return InetAddress.getLocalHost().getHostAddress();
     }
 

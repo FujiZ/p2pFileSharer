@@ -54,17 +54,18 @@ public class ServerThread extends IOThread{
     }
 
     private void processAdd(String[] argv) throws IOException{
-        if(!checkArg(argv,3))return;
+        if(!checkArg(argv,4))return;
 
-        Host newHost=Host.parseHost(argv[1],argv[2]);
-        hostEnv.addHost(newHost);
+        String name=argv[1];
+        Host newHost=Host.parseHost(argv[2],argv[3]);
+        hostEnv.addHost(name,newHost);
     }
 
     private void processDel(String[] argv) throws IOException{
-        if(!checkArg(argv,3))return;
+        if(!checkArg(argv,2))return;
 
-        Host oldHost=Host.parseHost(argv[1],argv[2]);
-        hostEnv.removeHost(oldHost);
+        String name=argv[1];
+        hostEnv.removeHost(name);
     }
 
     private void processGet(String[] argv) throws IOException {

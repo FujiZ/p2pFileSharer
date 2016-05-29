@@ -7,6 +7,7 @@ import utils.thread.IOThread;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -35,49 +36,56 @@ public class RouterThread extends IOThread{
     }
 
     private void processHello(String[] argv) throws IOException {
-        //HELLO HOSTNAME PORT
-        if(argv.length!=3){
+        //HELLO HOSTNAME HOSTADDR PORT
+        if(argv.length!=4){
             // TODO: 16-5-27 参数错误
             return;
         }
 
-        Host newHost=Host.parseHost(argv[1],argv[2]);
+        String name=argv[1];
+        Host newHost=Host.parseHost(argv[2],argv[3]);
+        //检查昵称是否已经存在
+        if(server.getHostMap().containsKey(name)){
+            sendErrorMsg("NAME EXISTS");
+            return;
+        }
+
         //向set中的所有主机广播ADD信息
-        synchronized (server.getHostSet()){
-            for(Host oldHost:server.getHostSet()){
-                executorService.execute(new HostAddThread(oldHost,newHost));
+        synchronized (server.getHostMap()){
+            for(Map.Entry<String,Host> hostEntry:server.getHostMap().entrySet()){
+                executorService.execute(new HostAddThread(hostEntry.getValue(),name,newHost));
             }
         }
         //将host加入当前set
-        server.getHostSet().add(newHost);
+        server.getHostMap().put(name,newHost);
         //向host发送更新当前的set
-        sendHostSet(newHost);
+        sendHostMap(newHost);
     }
 
-    private void sendHostSet(Host host) throws IOException {
+    private void sendHostMap(Host host) throws IOException {
         dos.writeUTF("ACCEPT "+host);
-        dos.writeUTF("HOSTNUM "+server.getHostSet().size());
-        synchronized (server.getHostSet()){
-            for(Host h:server.getHostSet()){
-                dos.writeUTF("ADD "+h);
+        dos.writeUTF("HOSTNUM "+server.getHostMap().size());
+        synchronized (server.getHostMap()){
+            for(Map.Entry<String,Host> hostEntry:server.getHostMap().entrySet()){
+                dos.writeUTF("ADD "+hostEntry.getKey()+" "+hostEntry.getValue());
             }
         }
     }
 
     private void processBye(String[] argv) throws IOException {
-        //BYE HOSTNAME PORT
-        if(argv.length!=3){
+        //BYE HOSTNAME
+        if(argv.length!=2){
             // TODO: 16-5-27 参数错误
             return;
         }
 
-        Host oldHost=Host.parseHost(argv[1],argv[2]);
+        String name=argv[1];
         //将host从当前set中删除
-        server.getHostSet().remove(oldHost);
+        server.getHostMap().remove(name);
         //向set中的所有主机广播DEL信息
-        synchronized (server.getHostSet()){
-            for(Host host:server.getHostSet()){
-                executorService.execute(new HostDelThread(host,oldHost));
+        synchronized (server.getHostMap()){
+            for(Map.Entry<String,Host> hostEntry:server.getHostMap().entrySet()){
+                executorService.execute(new HostDelThread(hostEntry.getValue(),name));
             }
         }
     }

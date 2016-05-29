@@ -5,19 +5,18 @@ import host.server.P2PServer;
 import utils.Host;
 
 import java.io.File;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by fuji on 16-5-28.
  */
 public class HostEnv {
 
-    public HostEnv(String dir,Host router) throws Exception {
-        this.dir=new File(dir);
+    public HostEnv(String name,File dir,Host router) throws Exception {
+        this.name=name;
+        this.dir=dir;
         this.router=router;
-        hostSet=Collections.synchronizedSet(new HashSet<>());
+        hostMap=Collections.synchronizedMap(new HashMap<>());
         if(!this.dir.isDirectory()){
             throw new Exception("Not a directory");
         }
@@ -47,18 +46,27 @@ public class HostEnv {
         return router;
     }
 
-    public void addHost(Host host){
-        hostSet.add(host);
+    public void addHost(String name,Host host){
+        hostMap.put(name,host);
     }
 
-    public void removeHost(Host host){
-        hostSet.remove(host);
+    public void removeHost(String name){
+        hostMap.remove(name);
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public Map<String,Host> getHostMap(){
+        return hostMap;
     }
 
     private File dir;
     private Host router;
+    private String name;
     private P2PServer server;
     private P2PClient client;
-    private final Set<Host> hostSet;
+    private final Map<String,Host> hostMap;
 
 }

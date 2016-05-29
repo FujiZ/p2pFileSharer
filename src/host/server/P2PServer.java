@@ -25,7 +25,7 @@ public class P2PServer implements Runnable{
         System.out.println("P2Pserver started successfully on "+port);
     }
 
-    private void sendHello(){
+    public boolean sendHello(){
         Socket socket=null;
         DataInputStream dis=null;
         DataOutputStream dos=null;
@@ -33,16 +33,16 @@ public class P2PServer implements Runnable{
             socket=IOUtils.getSocket(hostEnv.getRouter());
             dis=IOUtils.getInputStream(socket);
             dos=IOUtils.getOutputStream(socket);
-            //send HELLO HOSTNAME PORT to router
-            dos.writeUTF("HELLO "+IOUtils.getHostname()+" "+port);
+            //send HELLO HOSTNAME HOSTADDR PORT to router
+            dos.writeUTF("HELLO "+hostEnv.getName()+" "+IOUtils.getHostAddr()+" "+port);
             String response=dis.readUTF();
             if(response.startsWith("ACCEPT")){
                 //HOSTNUM count
                 int hostCount=Integer.parseInt(dis.readUTF().split(" ")[1]);
                 for(int i=0;i<hostCount;++i){
-                    //ADD HOSTNAME PORT
+                    //ADD HOSTNAME HOSTADDR PORT
                     String[] argv=dis.readUTF().split(" ");
-                    hostEnv.addHost(Host.parseHost(argv[1],argv[2]));
+                    hostEnv.addHost(argv[1],Host.parseHost(argv[2],argv[3]));
                 }
             }
             else {
@@ -51,12 +51,14 @@ public class P2PServer implements Runnable{
         }
         catch (IOException e){
             e.printStackTrace();
+            return false;
         }
         finally {
             IOUtils.closeInputStream(dis);
             IOUtils.closeOutputStream(dos);
             IOUtils.closeSocket(socket);
         }
+        return true;
     }
 
     public void sendBye(){
@@ -65,8 +67,8 @@ public class P2PServer implements Runnable{
         try {
             socket=IOUtils.getSocket(hostEnv.getRouter());
             dos=IOUtils.getOutputStream(socket);
-            //send BYE HOSTNAME PORT to router
-            dos.writeUTF("BYE "+IOUtils.getHostname()+" "+port);
+            //send BYE HOSTNAME
+            dos.writeUTF("BYE "+hostEnv.getName());
         }
         catch (IOException e){
             e.printStackTrace();
@@ -79,7 +81,6 @@ public class P2PServer implements Runnable{
 
     @Override
     public void run(){
-        sendHello();
         while (true){
             Socket socket;
             try {

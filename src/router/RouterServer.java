@@ -5,9 +5,7 @@ import utils.Host;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -19,7 +17,7 @@ public class RouterServer implements Runnable{
     public RouterServer(int port) throws IOException {
         executorService= Executors.newCachedThreadPool();
         serverSocket=new ServerSocket(port);
-        hostSet=Collections.synchronizedSet(new HashSet<>());
+        hostMap=Collections.synchronizedMap(new HashMap<>());
         System.out.println("Router server started successfully on "+port);
     }
 
@@ -40,18 +38,18 @@ public class RouterServer implements Runnable{
 
     public static void main(String[] argv){
         try {
-            new RouterServer(10240).run();
+            new RouterServer(6666).run();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public Set<Host> getHostSet() {
-        return hostSet;
+    public Map<String, Host> getHostMap() {
+        return hostMap;
     }
 
     private ExecutorService executorService;
     private ServerSocket serverSocket;
-    private Set<Host> hostSet;
+    private Map<String,Host> hostMap;
 
 }

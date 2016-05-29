@@ -4,13 +4,13 @@ package utils;
  * Created by fuji on 16-5-26.
  */
 public class Host {
-    public Host(String name,int port){
-        this.name=name;
+    public Host(String addr,int port){
+        this.addr =addr;
         this.port=port;
     }
 
-    public String getName() {
-        return name;
+    public String getAddr() {
+        return addr;
     }
 
     public int getPort() {
@@ -21,9 +21,13 @@ public class Host {
         return new Host(host,Integer.parseInt(port));
     }
 
+    public static String formatHost(String name,Host host){
+        return name+"@"+host.addr+":"+host.port;
+    }
+
     @Override
     public int hashCode() {
-        return name.hashCode()^Integer.hashCode(port);
+        return addr.hashCode()^Integer.hashCode(port);
     }
 
     @Override
@@ -35,14 +39,14 @@ public class Host {
         if (getClass() != obj.getClass())
             return false;
         Host other = (Host) obj;
-        return name.equals(other.name)&&port==other.port;
+        return addr.equals(other.addr)&&port==other.port;
     }
 
     @Override
     public String toString(){
-        return name+" "+port;
+        return addr +" "+port;
     }
 
-    private String name;
+    private String addr;
     private int port;
 }

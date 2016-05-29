@@ -4,6 +4,10 @@ package test;
  * Created by fuji on 16-5-29.
  */
 
+import host.HostEnv;
+import host.server.P2PServer;
+import utils.Host;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -12,10 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,13 +32,14 @@ public class Client{
     private JList userList;
     private JTextArea textArea; //can be used as log window
     private JTable fileTable;
-    private JTextField textField;
+    private JTextField dirField;
 
     private JTextField txt_serverIp;
     private JTextField txt_serverPort;
 
     private JTextField txt_hostPort;
     private JTextField txt_name;
+
     private JButton btn_start;
     private JButton btn_stop;
     private JButton btn_get;
@@ -56,6 +58,9 @@ public class Client{
     private MessageThread messageThread;// 负责接收消息的线程
     private Map<String, User> onLineUsers = new HashMap<>();// 所有在线用户
 
+    private HostEnv hostEnv;
+    private P2PServer server;
+
     // 主方法,程序入口
     public static void main(String[] args) {
         new Client();
@@ -68,14 +73,14 @@ public class Client{
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
-        String message = textField.getText().trim();
-        if (message == null || message.equals("")) {
+        String message = dirField.getText().trim();
+        if (message.equals("")) {
             JOptionPane.showMessageDialog(frame, "消息不能为空！", "错误",
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
         sendMessage(frame.getTitle() + "@" + "ALL" + "@" + message);
-        textField.setText(null);
+        dirField.setText(null);
     }
 
     // 构造方法
@@ -92,7 +97,7 @@ public class Client{
         initNorthPanel();
 
         rightScroll = new JScrollPane(fileTable);
-        rightScroll.setBorder(new TitledBorder("文件显示区"));
+        rightScroll.setBorder(new TitledBorder("共享文件"));
         leftScroll = new JScrollPane(userList);
         leftScroll.setBorder(new TitledBorder("在线用户"));
 
@@ -107,14 +112,14 @@ public class Client{
 
     private void initSouthPanel() {
         southPanel = new JPanel(new BorderLayout());
-        southPanel.add(textField, "Center");
+        southPanel.add(dirField, "Center");
         southPanel.add(btn_get, "East");
-        southPanel.setBorder(new TitledBorder("写消息"));
+        southPanel.setBorder(new TitledBorder("共享目录"));
     }
 
     private void initActionListener() {
         // 写消息的文本框中按回车键时事件
-        textField.addActionListener(new ActionListener() {
+        dirField.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 send();
             }
@@ -130,29 +135,48 @@ public class Client{
         // 单击连接按钮时事件
         btn_start.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                int port;
+                int serverPort;
+                int hostPort;
                 if (isConnected) {
-                    JOptionPane.showMessageDialog(frame, "已处于连接上状态，不要重复连接!",
+                    JOptionPane.showMessageDialog(frame, "已处于连接状态，不要重复连接!",
                             "错误", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 try {
                     try {
-                        port = Integer.parseInt(txt_serverPort.getText().trim());
+                        serverPort = Integer.parseInt(txt_serverPort.getText().trim());
+                        hostPort = Integer.parseInt(txt_hostPort.getText().trim());
                     } catch (NumberFormatException e2) {
-                        throw new Exception("端口号不符合要求!端口为整数!");
+                        throw new Exception("端口号应为整数!");
                     }
-                    String hostIp = txt_serverIp.getText().trim();
+                    String serverIp = txt_serverIp.getText().trim();
                     String name = txt_name.getText().trim();
-                    if (name.equals("") || hostIp.equals("")) {
-                        throw new Exception("姓名、服务器IP不能为空!");
+                    String dirStr= dirField.getText().trim();
+                    if (name.equals("") || serverIp.equals("")){
+                        throw new Exception("Name,IP can't be empty!");
                     }
-                    boolean flag = connectServer(port, hostIp, name);
-                    if (flag == false) {
+                    if(dirStr.equals("")){
+                        throw new Exception("路径不能为空!");
+                    }
+                    //读取文件夹
+                    File dir=new File(dirStr);
+                    if(!dir.isDirectory()){
+                        throw new Exception("路径必须是目录!");
+                    }
+                    hostEnv=new HostEnv(name,dir,new Host(serverIp,serverPort));
+                    server=new P2PServer(hostEnv,hostPort);
+                    if(!server.sendHello()){
                         throw new Exception("与服务器连接失败!");
                     }
+                    isConnected=true;
+
                     frame.setTitle(name);
                     JOptionPane.showMessageDialog(frame, "成功连接!");
+                    //todo 将textField设置为不可编辑
+
+                    //初始化用户列表
+                    initUserList();
+
                 } catch (Exception exc) {
                     JOptionPane.showMessageDialog(frame, exc.getMessage(),
                             "错误", JOptionPane.ERROR_MESSAGE);
@@ -193,6 +217,15 @@ public class Client{
 
     }
 
+    private void initUserList(){
+        listModel.clear();
+        synchronized (hostEnv.getHostMap()){
+            for(Map.Entry<String,Host> hostEntry:hostEnv.getHostMap().entrySet()){
+                listModel.addElement(Host.formatHost(hostEntry.getKey(),hostEntry.getValue()));
+            }
+        }
+    }
+
     private void initFrame() {
         frame = new JFrame("Client");
         // 更改JFrame的图标：
@@ -210,7 +243,7 @@ public class Client{
     }
 
     private void initElements() {
-        textField = new JTextField();
+        dirField = new JTextField();
         txt_serverIp = new JTextField("127.0.0.1");
         txt_serverPort = new JTextField("6666");
         txt_hostPort = new JTextField("10240");
@@ -253,14 +286,14 @@ public class Client{
     /**
      * 连接服务器
      *
-     * @param port
-     * @param hostIp
+     * @param serverPort
+     * @param serverIp
      * @param name
      */
-    public boolean connectServer(int port, String hostIp, String name) {
+    private boolean connectServer(String serverIp,int serverPort, String name) {
         // 连接服务器
         try {
-            socket = new Socket(hostIp, port);// 根据端口号和服务器ip建立连接
+            socket = new Socket(serverIp, serverPort);// 根据端口号和服务器ip建立连接
             writer = new PrintWriter(socket.getOutputStream());
             reader = new BufferedReader(new InputStreamReader(socket
                     .getInputStream()));
@@ -272,7 +305,7 @@ public class Client{
             isConnected = true;// 已经连接上了
             return true;
         } catch (Exception e) {
-            textArea.append("与端口号为：" + port + "    IP地址为：" + hostIp
+            textArea.append("与端口号为：" + serverPort + "    IP地址为：" + serverIp
                     + "   的服务器连接失败!" + "\r\n");
             isConnected = false;// 未连接上
             return false;

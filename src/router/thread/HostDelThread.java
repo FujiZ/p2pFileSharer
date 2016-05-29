@@ -10,15 +10,15 @@ import java.io.IOException;
  */
 public class HostDelThread extends HostUpdateThread{
 
-    public HostDelThread(Host targetHost, Host oldHost) throws IOException {
+    public HostDelThread(Host targetHost, String name) throws IOException {
         super(targetHost);
-        host=oldHost;
+        this.name=name;
     }
 
     @Override
     protected void update() throws IOException {
-        dos.writeUTF("DEL "+host);
+        dos.writeUTF("DEL "+name);
     }
 
-    private Host host;
+    private String name;
 }
