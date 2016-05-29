@@ -47,6 +47,7 @@ public class P2PServer implements Runnable{
             }
             else {
                 System.out.println(response);
+                return false;
             }
         }
         catch (IOException e){
@@ -76,12 +77,16 @@ public class P2PServer implements Runnable{
         finally {
             IOUtils.closeOutputStream(dos);
             IOUtils.closeSocket(socket);
-            try {
-                serverSocket.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            close();
             shutdownRequested=true;
+        }
+    }
+
+    public void close(){
+        try {
+            serverSocket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -96,11 +101,7 @@ public class P2PServer implements Runnable{
         } catch (IOException e){
             e.printStackTrace();
         } finally {
-            try {
-                serverSocket.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            close();
         }
     }
 

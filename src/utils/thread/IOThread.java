@@ -46,6 +46,7 @@ public abstract class IOThread implements Runnable{
         try {
             initSocketStream();
             String cmdStr=dis.readUTF();
+            System.out.println(cmdStr);
             parseCmd(cmdStr);
         }
         catch (IOException e){

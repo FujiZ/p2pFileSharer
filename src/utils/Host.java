@@ -30,10 +30,6 @@ public class Host {
         return new Host(name,host,Integer.parseInt(port));
     }
 
-    public static String formatHost(String name,Host host){
-        return name+"@"+host.ip +":"+host.port;
-    }
-
     @Override
     public int hashCode() {
         return ip.hashCode()^Integer.hashCode(port);

@@ -1,7 +1,7 @@
 package host;
 
+import host.client.P2PClient;
 import host.server.P2PServer;
-import host.client.Client;
 import utils.Host;
 
 import java.io.File;
@@ -34,11 +34,11 @@ public class HostEnv {
         this.server = server;
     }
 
-    public Client getClient() {
+    public P2PClient getClient() {
         return client;
     }
 
-    public void setClient(Client client) {
+    public void setClient(P2PClient client) {
         this.client = client;
     }
 
@@ -66,7 +66,7 @@ public class HostEnv {
     private Host router;
     private String name;
     private P2PServer server;
-    private Client client;
+    private P2PClient client;
     private final Map<String,Host> hostMap;
 
 }

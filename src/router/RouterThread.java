@@ -37,10 +37,7 @@ public class RouterThread extends IOThread{
 
     private void processHello(String[] argv) throws IOException {
         //HELLO HOSTNAME HOSTADDR PORT
-        if(argv.length!=4){
-            // TODO: 16-5-27 参数错误
-            return;
-        }
+        if(!checkArg(argv,4))return;
 
         String name=argv[1];
         Host newHost=Host.parseHost(name,argv[2],argv[3]);
@@ -74,10 +71,7 @@ public class RouterThread extends IOThread{
 
     private void processBye(String[] argv) throws IOException {
         //BYE HOSTNAME
-        if(argv.length!=2){
-            // TODO: 16-5-27 参数错误
-            return;
-        }
+        if(!checkArg(argv,2))return;
 
         String name=argv[1];
         //将host从当前set中删除

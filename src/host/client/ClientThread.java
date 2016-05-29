@@ -6,7 +6,6 @@ import utils.thread.IOThread;
 import utils.IOUtils;
 
 import java.io.*;
-import java.net.Socket;
 import java.nio.file.Paths;
 
 /**
@@ -58,7 +57,9 @@ public class ClientThread extends IOThread{
 
         File file=Paths.get(hostEnv.getDir().getAbsolutePath(),argv[1]).toFile();
         if(file.exists()){
-            System.out.println("File already exists!");
+            String msg=argv[1]+" already exists!";
+            System.out.println(msg);
+            hostEnv.getClient().showMessage(msg,"Error");
             return;
         }
 
@@ -75,6 +76,7 @@ public class ClientThread extends IOThread{
 
     private void receiveFile(File file) throws IOException {
         //todo 新建窗口 显示进度条
+        DownloadWin downloadWin=new DownloadWin(file.getName());
         //SIZE 12345
         long fileSize=Long.parseLong(dis.readUTF().split(" ")[1]);
         byte[] buffer=new byte[BUFSIZE];
@@ -89,8 +91,10 @@ public class ClientThread extends IOThread{
             fileOut.write(buffer,0,read);
             passedlen+=read;
             System.out.println(file.getName()+" received"+(passedlen*100/fileSize)+"%");
+            downloadWin.progressChange((int) (passedlen*100/fileSize));
         }
         System.out.println("Receive complete");
+        downloadWin.progressDone();
         fileOut.close();
     }
 
