@@ -35,6 +35,12 @@ public class RouterThread extends IOThread{
         }
     }
 
+    @Override
+    public void run(){
+        server.addLog("New connection from "+socket.getInetAddress()+":"+socket.getPort());
+        super.run();
+    }
+
     private void processHello(String[] argv) throws IOException {
         //HELLO HOSTNAME HOSTADDR PORT
         if(!checkArg(argv,4))return;
@@ -46,6 +52,7 @@ public class RouterThread extends IOThread{
             sendErrorMsg("NAME EXISTS");
             return;
         }
+        server.addLog(newHost+" joined the group");
 
         //向set中的所有主机广播ADD信息
         synchronized (server.getHostMap()){
@@ -76,6 +83,7 @@ public class RouterThread extends IOThread{
         String name=argv[1];
         //将host从当前set中删除
         server.getHostMap().remove(name);
+        server.addLog(name+" left the group");
         //向set中的所有主机广播DEL信息
         synchronized (server.getHostMap()){
             for(Map.Entry<String,Host> hostEntry:server.getHostMap().entrySet()){

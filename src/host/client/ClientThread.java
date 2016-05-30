@@ -75,7 +75,7 @@ public class ClientThread extends IOThread{
     }
 
     private void receiveFile(File file) throws IOException {
-        //todo 新建窗口 显示进度条
+        //fixed 新建窗口 显示进度条
         DownloadWin downloadWin=new DownloadWin(file.getName());
         //SIZE 12345
         long fileSize=Long.parseLong(dis.readUTF().split(" ")[1]);
