@@ -1,6 +1,5 @@
-package host.server;
+package host;
 
-import host.HostEnv;
 import utils.Host;
 import utils.IOUtils;
 
@@ -13,13 +12,14 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * Created by fuji on 16-5-26.
+ * Created by fuji on 16-10-26.
  */
 public class P2PServer implements Runnable{
 
-    public P2PServer(HostEnv hostEnv, int port) throws IOException {
+    public P2PServer(HostEnv hostEnv,String ip, int port) throws IOException {
         executorService=Executors.newCachedThreadPool();
         this.hostEnv=hostEnv;
+        this.ip=ip;
         this.port=port;
         serverSocket=new ServerSocket(port);
         System.out.println("P2Pserver started successfully on "+port);
@@ -34,7 +34,7 @@ public class P2PServer implements Runnable{
             dis=IOUtils.getInputStream(socket);
             dos=IOUtils.getOutputStream(socket);
             //send HELLO HOSTNAME HOSTADDR PORT to router
-            dos.writeUTF("HELLO "+hostEnv.getName()+" "+IOUtils.getHostIP()+" "+port);
+            dos.writeUTF("HELLO "+hostEnv.getName()+" "+ip+" "+port);
             String response=dis.readUTF();
             if(response.startsWith("ACCEPT")){
                 //HOSTNUM count
@@ -109,6 +109,7 @@ public class P2PServer implements Runnable{
     private ExecutorService executorService;
     private ServerSocket serverSocket;
     private HostEnv hostEnv;
+    private String ip;
     private int port;
     private boolean shutdownRequested=false;
 

@@ -1,12 +1,12 @@
-package router.thread;
+package router;
 
 import utils.Host;
-import utils.thread.HostUpdateThread;
+import utils.HostUpdateThread;
 
 import java.io.IOException;
 
 /**
- * Created by fuji on 16-5-27.
+ * Created by fuji on 16-10-27.
  */
 public class HostAddThread extends HostUpdateThread{
     public HostAddThread(Host targetHost,Host newHost) throws IOException {

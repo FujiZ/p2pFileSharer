@@ -1,4 +1,4 @@
-package utils.thread;
+package utils;
 
 import utils.Host;
 import utils.IOUtils;
@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.net.Socket;
 
 /**
- * Created by fuji on 16-5-27.
+ * Created by fuji on 16-10-27.
  */
 public abstract class HostUpdateThread implements Runnable{
     //需要tarHost,updateInfo这两个信息

@@ -1,4 +1,4 @@
-package host.client;
+package host;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,9 +1,7 @@
 package router;
 
-import router.thread.HostAddThread;
-import router.thread.HostDelThread;
 import utils.Host;
-import utils.thread.IOThread;
+import utils.IOThread;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -12,7 +10,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * Created by fuji on 16-5-26.
+ * Created by fuji on 16-10-26.
  */
 public class RouterThread extends IOThread{
 

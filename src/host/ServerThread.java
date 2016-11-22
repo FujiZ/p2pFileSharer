@@ -1,15 +1,14 @@
-package host.server;
+package host;
 
-import host.HostEnv;
 import utils.Host;
-import utils.thread.IOThread;
+import utils.IOThread;
 import utils.IOUtils;
 
 import java.io.*;
 import java.net.Socket;
 
 /**
- * Created by fuji on 16-5-26.
+ * Created by fuji on 16-10-26.
  */
 public class ServerThread extends IOThread{
 

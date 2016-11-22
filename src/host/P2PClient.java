@@ -1,11 +1,9 @@
-package host.client;
+package host;
 
 /**
- * Created by fuji on 16-5-29.
+ * Created by fuji on 16-10-29.
  */
 
-import host.HostEnv;
-import host.server.P2PServer;
 import utils.Host;
 
 import java.awt.BorderLayout;
@@ -35,7 +33,7 @@ public class P2PClient {
         initSouthPanel();
 
         centerSplit = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, leftScroll, rightScroll);
-        centerSplit.setDividerLocation(140);
+        centerSplit.setDividerLocation(180);
 
         initFrame();
         initActionListener();
@@ -43,11 +41,12 @@ public class P2PClient {
     }
 
     private void initElements() {
-        dirField = new JTextField("/home/fuji/tmp/client");
+        dirField = new JTextField();
         txt_serverIp = new JTextField("127.0.0.1");
         txt_serverPort = new JTextField("6666");
+        txt_hostIp = new JTextField();
         txt_hostPort = new JTextField("10240");
-        txt_name = new JTextField("zhp");
+        txt_name = new JTextField("");
         btn_start = new JButton("连接");
         btn_stop = new JButton("断开");
         btn_stop.setEnabled(false);
@@ -70,15 +69,17 @@ public class P2PClient {
 
     private void initNorthPanel(){
         northPanel = new JPanel();
-        northPanel.setLayout(new GridLayout(1, 9));
+        northPanel.setLayout(new GridLayout(2, 6));
         northPanel.add(new JLabel("ServerIP"));
         northPanel.add(txt_serverIp);
         northPanel.add(new JLabel("ServerPort"));
         northPanel.add(txt_serverPort);
-        northPanel.add(new JLabel("HostPort"));
-        northPanel.add(txt_hostPort);
         northPanel.add(new JLabel("Name"));
         northPanel.add(txt_name);
+        northPanel.add(new JLabel("HostIP"));
+        northPanel.add(txt_hostIp);
+        northPanel.add(new JLabel("HostPort"));
+        northPanel.add(txt_hostPort);
         northPanel.add(btn_start);
         northPanel.add(btn_stop);
         northPanel.setBorder(new TitledBorder("连接信息"));
@@ -194,10 +195,11 @@ public class P2PClient {
             try {
                 serverPort = Integer.parseInt(txt_serverPort.getText().trim());
                 hostPort = Integer.parseInt(txt_hostPort.getText().trim());
-            } catch (NumberFormatException e2) {
+            } catch (NumberFormatException e) {
                 throw new Exception("端口号应为整数!");
             }
             String serverIp = txt_serverIp.getText().trim();
+            String hostIp = txt_hostIp.getText().trim();
             String name = txt_name.getText().trim();
             String dirStr= dirField.getText().trim();
             if (name.equals("") || serverIp.equals("")){
@@ -212,7 +214,7 @@ public class P2PClient {
                 throw new Exception("路径必须是目录!");
             }
             hostEnv=new HostEnv(name,dir,new Host("server",serverIp,serverPort));
-            server=new P2PServer(hostEnv,hostPort);
+            server=new P2PServer(hostEnv,hostIp,hostPort);
             hostEnv.setServer(server);
             hostEnv.setClient(this);
             if(!server.sendHello()){
@@ -232,12 +234,12 @@ public class P2PClient {
         } catch (Exception exc) {
             JOptionPane.showMessageDialog(frame, exc.getMessage(),
                     "错误", JOptionPane.ERROR_MESSAGE);
-            if(server!=null)
-                server.close();
+            if(server!=null) server.close();
         }
     }
 
     private void setTextFieldEditable(boolean flag){
+        txt_hostIp.setEditable(flag);
         txt_hostPort.setEditable(flag);
         txt_name.setEditable(flag);
         txt_serverIp.setEditable(flag);
@@ -323,6 +325,7 @@ public class P2PClient {
     private JTextField txt_serverIp;
     private JTextField txt_serverPort;
 
+    private JTextField txt_hostIp;
     private JTextField txt_hostPort;
     private JTextField txt_name;
 

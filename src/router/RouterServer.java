@@ -16,11 +16,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * Created by fuji on 16-5-26.
+ * Created by fuji on 16-10-26.
  */
 public class RouterServer extends JFrame implements Runnable{
 
-    public RouterServer() throws IOException {
+    public RouterServer(){
         super("Router Server");
         initElements();
         initNorthPanel();
@@ -150,11 +150,7 @@ public class RouterServer extends JFrame implements Runnable{
     }
 
     public static void main(String[] argv){
-        try {
-            new RouterServer();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        new RouterServer();
     }
 
     public Map<String, Host> getHostMap() {

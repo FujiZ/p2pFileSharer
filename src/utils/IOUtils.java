@@ -2,11 +2,13 @@ package utils;
 
 import java.io.*;
 import java.net.InetAddress;
+import java.net.NetworkInterface;
 import java.net.Socket;
-import java.net.UnknownHostException;
+import java.util.Collections;
+import java.util.List;
 
 /**
- * Created by fuji on 16-5-26.
+ * Created by fuji on 16-10-26.
  */
 public class IOUtils {
     public static BufferedReader getBufferedReader(Socket socket) throws IOException {
@@ -83,8 +85,34 @@ public class IOUtils {
         }
     }
 
-    public static String getHostIP() throws UnknownHostException {
-        return InetAddress.getLocalHost().getHostAddress();
+    /**
+     * Get IP address from first non-localhost interface
+     * @param useIPv4  true=return ipv4, false=return ipv6
+     * @return  address or empty string
+     */
+    public static String getHostIP(boolean useIPv4) {
+        try {
+            List<NetworkInterface> interfaces = Collections.list(NetworkInterface.getNetworkInterfaces());
+            for (NetworkInterface intf : interfaces) {
+                List<InetAddress> addrs = Collections.list(intf.getInetAddresses());
+                for (InetAddress addr : addrs) {
+                    if (!addr.isLoopbackAddress()) {
+                        System.out.println(intf.getDisplayName());
+                        String sAddr = addr.getHostAddress();
+                        boolean isIPv4 = sAddr.indexOf(':')<0;
+                        if (useIPv4) {
+                            if (isIPv4) return sAddr;
+                        }
+                        else if (!isIPv4) {
+                            int delim = sAddr.indexOf('%'); // drop ip6 zone suffix
+                            return delim<0 ? sAddr.toUpperCase() : sAddr.substring(0, delim).toUpperCase();
+                        }
+                    }
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } // for now eat exceptions
+        return "";
     }
-
 }

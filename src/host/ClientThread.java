@@ -1,15 +1,14 @@
-package host.client;
+package host;
 
-import host.HostEnv;
 import utils.Host;
-import utils.thread.IOThread;
+import utils.IOThread;
 import utils.IOUtils;
 
 import java.io.*;
 import java.nio.file.Paths;
 
 /**
- * Created by fuji on 16-5-26.
+ * Created by fuji on 16-10-26.
  */
 public class ClientThread extends IOThread{
 

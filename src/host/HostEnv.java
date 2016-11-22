@@ -1,14 +1,12 @@
 package host;
 
-import host.client.P2PClient;
-import host.server.P2PServer;
 import utils.Host;
 
 import java.io.File;
 import java.util.*;
 
 /**
- * Created by fuji on 16-5-28.
+ * Created by fuji on 16-10-28.
  */
 public class HostEnv {
 

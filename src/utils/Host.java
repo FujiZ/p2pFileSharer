@@ -1,7 +1,7 @@
 package utils;
 
 /**
- * Created by fuji on 16-5-26.
+ * Created by fuji on 16-10-26.
  */
 public class Host {
     public Host(String name,String addr,int port){
