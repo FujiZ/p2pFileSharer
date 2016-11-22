@@ -2,6 +2,7 @@
 A simple p2p file share program written in Java
 ## Dependencies
 - jre
+
 ## Usage
 - 在其中一台机器上运行routerServer.jar, 指定服务器端口
 - 在其余机器上运行p2pClient.jar, 并指定服务器地址, 主机地址, 用户名以及需要共享的目录地址
